@@ -10,14 +10,17 @@ public class scriptNPC : MonoBehaviour
     void Start()
     {
         rbd = GetComponent<Rigidbody2D>();
-        
+        rbd.velocity = new Vector2(0, -velocidade);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision) {
+        Destroy(collision.gameObject);
+        Destroy(gameObject);
+    }
     // Update is called once per frame
     void Update()
     {
-        rbd.velocity = new Vector2(0, -velocidade);
-        if(transform.position.y < -Camera.main.orthographicSize)
+        if (transform.position.y < -Camera.main.orthographicSize)
         {
             Destroy(this.gameObject);
         }
