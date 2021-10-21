@@ -26,6 +26,11 @@ public class scriptPC : MonoBehaviour {
         float y = Input.GetAxis("Vertical");
         rbd.velocity = new Vector2(x, y) * velocidade;
 
+        verificarBordas();
+        verificarTiro();
+    }
+
+    private void verificarBordas() {
         if (transform.position.x > largura) {
             transform.position = new Vector2(-largura, transform.position.y);
         }
@@ -38,8 +43,10 @@ public class scriptPC : MonoBehaviour {
         } else if(transform.position.y < -altura) {
             transform.position = new Vector2(transform.position.x, -altura);
         }
+    }
 
-        if(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) || Input.GetKeyDown("joystick button 0")) {           
+    private void verificarTiro() {
+             if(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) || Input.GetKeyDown("joystick button 0")) {           
             som.Play();
             Vector2 pos = new Vector2(transform.position.x, transform.position.y+ alturaNave);
             Instantiate(tiro, pos, Quaternion.identity);

@@ -4,27 +4,23 @@ using UnityEngine;
 
 public class scriptNPC : MonoBehaviour
 {
-    private Rigidbody2D rbd;
     private float altura;
     public float velocidade = 5;
+    private Rigidbody2D rbd;
+
     // Start is called before the first frame update
     void Start()
     {
         altura = Camera.main.orthographicSize;
         rbd = GetComponent<Rigidbody2D>();
-        rbd.velocity = new Vector2(0, -velocidade);
+        rbd.velocity = new Vector2(0, -velocidade);    
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
-        Destroy(collision.gameObject);
-        Destroy(gameObject);
-    }
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y < -altura)
-        {
-            Destroy(this.gameObject);
+        if(transform.position.y < -altura) {
+            Destroy(gameObject);
         }
     }
 }
