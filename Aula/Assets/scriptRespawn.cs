@@ -12,7 +12,7 @@ public class scriptRespawn : MonoBehaviour
     {
         altura = Camera.main.orthographicSize;
         largura = altura * Camera.main.aspect;
-        InvokeRepeating("Respawn", 1, 2);
+        InvokeRepeating("Respawn", 1, 1);
     }
 
     private void Respawn()
