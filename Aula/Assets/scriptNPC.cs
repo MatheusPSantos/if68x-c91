@@ -23,4 +23,11 @@ public class scriptNPC : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if(collider.tag == "Jogador") { }
+        Destroy(collider.gameObject);
+        Destroy(this.gameObject);
+    }
 }
