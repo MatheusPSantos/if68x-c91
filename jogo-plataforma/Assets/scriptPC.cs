@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class scriptPC : MonoBehaviour
 {
     private Rigidbody2D rbd;
@@ -10,6 +10,9 @@ public class scriptPC : MonoBehaviour
     private bool chao = true;
     private Animator anim;
     private bool direita = true;
+    public LayerMask mascara;
+    public LayerMask endPoint;
+    public LayerMask espinhos;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +51,29 @@ public class scriptPC : MonoBehaviour
             rbd.AddForce(new Vector2(0, pulo));
         }
 
+        RaycastHit2D hit2D;
+        RaycastHit2D frontHit;
+        RaycastHit2D hitEnd;
+        RaycastHit2D hitEspinhos;
+
+        hit2D = Physics2D.Raycast(transform.position, -transform.up, 0.5f, mascara);
+        hitEspinhos = Physics2D.Raycast(transform.position, -transform.up, 0.5f, mascara);
+        frontHit = Physics2D.Raycast(transform.position, transform.right, 0.5f, mascara);        
+        hitEnd = Physics2D.Raycast(transform.position, transform.right, 0.5f, endPoint);
+
+        if(hit2D.collider != null) {
+            Destroy(hit2D.collider.gameObject);
+        }
+
+        if(frontHit.collider != null || hitEspinhos.collider != null) {
+            Destroy(gameObject);
+            SceneManager.LoadScene(3);
+        }
+
+        if(hitEnd.collider != null) {
+            Destroy(gameObject);
+            SceneManager.LoadScene(2);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

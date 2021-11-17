@@ -341,6 +341,10 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/VSSettingsProvider.ref.dll"
 "Assets/scriptCamera.cs"
+"Assets/scriptCenaDerrota.cs"
+"Assets/scriptCenaVitoria.cs"
+"Assets/scriptInimigo.cs"
+"Assets/scriptJogo.cs"
 "Assets/scriptPC.cs"
 "Assets/scriptPlataforma.cs"
 -langversion:8.0
